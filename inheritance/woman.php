@@ -7,4 +7,8 @@ class Woman extends Human
         parent::speak();
         echo ' a lot';
     }
+
+    public function eat() {
+        echo 'i can eat';
+    }
 }

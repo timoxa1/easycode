@@ -1,6 +1,6 @@
 <?php
 
-class Human
+abstract class Human
 {
     public $age;
     protected $_prot;
@@ -15,7 +15,5 @@ class Human
         echo 'i can sing song';
     }
 
-    protected function _someMethod() {
-
-    }
+    abstract public function eat();
 }
