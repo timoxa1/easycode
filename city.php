@@ -51,3 +51,4 @@ $house2 = new House();
 $city->buildHouse($house2);
 
 $city->printAllHouses();
+// some changes
