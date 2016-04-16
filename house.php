@@ -1,5 +1,5 @@
 <?php
-
+//privet
 class House {
     public $height;
     public $name;
