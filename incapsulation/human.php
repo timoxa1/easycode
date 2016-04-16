@@ -2,6 +2,7 @@
 
 class Human
 {
+    
     public $age;
 
     protected $_name;

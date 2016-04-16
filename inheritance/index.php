@@ -7,5 +7,5 @@ require_once 'woman.php';
 //$man->eat();
 //echo '<br/> ';
 
-$human = new Human();
+$human = new Man();
 $human->speak();
