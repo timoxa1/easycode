@@ -11,6 +11,7 @@ class City {
 
 	public function __destruct() {
         echo '<br />';
+        echo '<br />';
         echo 'Object delete';
 	}
 
