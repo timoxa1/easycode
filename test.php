@@ -1,11 +1,4 @@
-<<<<<<< HEAD
 
-<?php 
-// test
-echo "test";
-?>
-=======
-<?php
 /**
  * Created by PhpStorm.
  * User: bogdan
