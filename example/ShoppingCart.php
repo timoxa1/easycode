@@ -9,4 +9,8 @@
 abstract class ShoppingCart
 {
     abstract public function addToCart($productId);
+
+    public function someMethod() {
+        //some logic
+    }
 }
