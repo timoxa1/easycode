@@ -1,7 +1,7 @@
 <?php
 require_once "house.php";
 // hello!
-//тест4
+//тест тест 
 class City {
 	public $name;
 	public $housePull = array();
