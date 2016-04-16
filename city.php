@@ -30,6 +30,7 @@ class City {
     	return $this->housePull;
     }
 
+
     public function printAllHouses() {
     	echo $this->name . ' contains following houses: ';
     	echo "<br />";
