@@ -1,5 +1,5 @@
 <?php
-
+// тест тест2
 class House {
     public $height;
     public $name;

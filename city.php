@@ -47,6 +47,7 @@ $house = new House('First house', 5);
 $house1 = $house;
 $house1->setName('Modified name');
 $city->buildHouse($house);
+//тест
 
 $house2 = new House();
 $city->buildHouse($house2);
