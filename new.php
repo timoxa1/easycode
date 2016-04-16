@@ -1,5 +1,5 @@
 <?php
-// ок
+// ок 
 /**
  * Created by PhpStorm.
  * User: bogdan
