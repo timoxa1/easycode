@@ -4,3 +4,5 @@ interface Eat
 {
     public function eat();
 }
+
+// test

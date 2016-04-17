@@ -1,11 +1,6 @@
 <?php
 require_once "house.php";
-<<<<<<< HEAD
-// hello!
-//тест тест 
-=======
-// hello!!
->>>>>>> upstream/dev
+// test1
 class City {
 	public $name;
 	public $housePull = array();
