@@ -5,4 +5,4 @@ class User {
     public $password;
     public $email;
     public $date;
-}
+}// test
