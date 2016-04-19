@@ -19,4 +19,4 @@ class Calculator implements iCalculator
 }
 
 $calculator = new Calculator();
-$calculator->plus(1, 2); // 33
+$calculator->plus(1, 2); // 3
