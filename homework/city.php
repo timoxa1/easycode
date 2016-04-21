@@ -13,6 +13,7 @@ class City {
 	}
 
 	public function buildHouse(House $objHouse) {
+        $objHouse->setCity($this);
         $this->_addHouseToPull($objHouse);
 	}
 
@@ -53,17 +54,7 @@ $city->addCitzien($woman);
 $house->setOwner($woman);
 $man->live($house);
 
-echo 'City:';
-echo '<pre>';
-print_r($city);
-echo '</pre>';
-
 echo 'House:';
 echo '<pre>';
 print_r($house);
-echo '</pre>';
-
-echo 'Man:';
-echo '<pre>';
-print_r($man);
 echo '</pre>';

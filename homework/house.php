@@ -6,9 +6,13 @@ class House {
     public $height;
     public $name;
     public $citziens = [];
-    protected $_citzienRestiction = 5;
 
+    protected $_citzienRestiction = 5;
     protected $_owner; // human object
+    /**
+     * @var City
+     */
+    protected $_city; // city object
 
     public function __construct($name='Default name', $height=10) {
         $this->name = $name;
@@ -16,6 +20,7 @@ class House {
     }
 
     public function addCitzien(Human $citzien) {
+        // add condition
         if ($this->getCitzienCount() >= $this->_citzienRestiction) {
             // TODO: add exception
         } else {
@@ -41,5 +46,13 @@ class House {
 
     public function getName() {
         return $this->name;
+    }
+
+    public function setCity(City $city) {
+        $this->_city = $city;
+    }
+
+    public function getCity() {
+        return $this->_city;
     }
 }
