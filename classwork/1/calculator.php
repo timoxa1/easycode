@@ -19,4 +19,8 @@ class Calculator implements iCalculator
 }
 
 $calculator = new Calculator();
+<<<<<<< HEAD
 $calculator->plus(1, 2); // 
+=======
+$calculator->plus(1, 2); // 3
+>>>>>>> upstream/dev

@@ -1,5 +1,4 @@
 <?php
-
 require_once 'Post.php';
 require_once 'WriterFactory.php';
 
