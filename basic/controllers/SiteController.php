@@ -101,28 +101,30 @@ class SiteController extends Controller
 
             $name = Html::encode($form->name);
             $email = Html::encode($form->email);
-            $homePage =Html::encode($form->homePage);
+            $url =Html::encode($form->url);
             $text = Html::encode($form->text);
 
         }
         else {
             $name       = '';
             $email      = '';
-            $homePage   = '';
+            $url        = '';
             $text       = '';
 
         }
 
 
+
         return $this->render('form',
            [
-               'form'      => $form,
+               'form'       => $form,
                'name'       => $name,
                'email'      => $email,
-               'homePage'   => $homePage,
+               'url'        => $url,
                'text'       => $text,
 
            ]
         );
     }
+
 }

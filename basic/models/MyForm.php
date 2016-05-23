@@ -2,15 +2,20 @@
 namespace app\models;
 
 use Yii;
-use yii\base\Model;
 
-class MyForm extends Model
+use yii\db\ActiveRecord;
+
+class MyForm extends ActiveRecord
 {
     public $name;
     public $email;
-    public $homePage;
+    public $url;
     public $text;
 
+    public static function tableName()
+    {
+        return 'user';
+    }
 
     public function rules()
     {
