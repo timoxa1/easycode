@@ -38,6 +38,8 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'Гостевая книга', 'url' => ['/user/user']],
+            ['label' => 'Посты', 'url' => ['/post/post']],
+            ['label' => 'Регистрация', 'url' => ['/users/reg']],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
