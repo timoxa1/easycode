@@ -1,23 +1,23 @@
 <?php
-use yii\helpers\Url;
-?>
-<?php
-$this->title = 'Posts';
+$this->title = 'One Post';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div>
-<h1>Posts</h1>
 
-<?php foreach($posts as $post):?>
+<div class="row">
+    <div class="col-lg-5">
 
-    <?= "<br />"?>
-    <h1><a href="<?= Url::to(['post/one', 'id' => $post->id]) ?>"><?= $post->title ?></a></h1>
-    <?= $post->img?>
-    <p> <?= $post->intro_text?></p>
-    <?= $post->date_creation?>
-    <?= "<br />"?>
-    <?= "id Автора ". $post->users_id ?>
-    <?= "<br />"?>
-    <h2><a href="<?= Url::to(['post/post', 'id' => $post->id])?>"><?= "Читать дальше"?></a><h2>
-<?php endforeach;?>
+
+        <div>
+            <?= "<br />"?>
+            <?= $one->img?>
+            <h1><?= $one->title ?></h1>
+            <p> <?= $one->full_text?></p>
+            <?= $one->date_creation?>
+            <?= "<br />"?>
+            <?= "id Автора ". $one->name_user ?>
+
+
+
+        </div>
+    </div>
 </div>

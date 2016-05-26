@@ -3,17 +3,18 @@
 namespace app\controllers;
 
 use Yii;
-use yii\helpers\Html;
-use app\models\Users;
+use app\models\Guest;
 use yii\data\ActiveDataProvider;
+use yii\data\Pagination;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+
 /**
- * UsersController implements the CRUD actions for Users model.
+ * GuestController implements the CRUD actions for Guest model.
  */
-class UsersController extends Controller
+class GuestController extends Controller
 {
     /**
      * @inheritdoc
@@ -31,13 +32,13 @@ class UsersController extends Controller
     }
 
     /**
-     * Lists all Users models.
+     * Lists all Guest models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Users::find(),
+            'query' => Guest::find(),
         ]);
 
         return $this->render('index', [
@@ -46,7 +47,7 @@ class UsersController extends Controller
     }
 
     /**
-     * Displays a single Users model.
+     * Displays a single Guest model.
      * @param string $id
      * @return mixed
      */
@@ -58,13 +59,13 @@ class UsersController extends Controller
     }
 
     /**
-     * Creates a new Users model.
+     * Creates a new Guest model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Users();
+        $model = new Guest();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +77,7 @@ class UsersController extends Controller
     }
 
     /**
-     * Updates an existing Users model.
+     * Updates an existing Guest model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param string $id
      * @return mixed
@@ -95,7 +96,7 @@ class UsersController extends Controller
     }
 
     /**
-     * Deletes an existing Users model.
+     * Deletes an existing Guest model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
@@ -108,29 +109,41 @@ class UsersController extends Controller
     }
 
     /**
-     * Finds the Users model based on its primary key value.
+     * Finds the Guest model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param string $id
-     * @return Users the loaded model
+     * @return Guest the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Users::findOne($id)) !== null) {
+        if (($model = Guest::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    public function actionReg()
+    public function actionBook()
     {
-        $model = new Users();
-        $model->load(Yii::$app->request->post())&& $model->save();
-        $model = new Users();
+        $model = new Guest();
 
-        return $this->render('reg',[
-            'model' => $model,
+        $model->load(Yii::$app->request->post()) && $model->save();
 
+        $guests = Guest::find();
+        $model = new Guest();
+        $pagination = new Pagination([
+            'defaultPageSize' => 2,
+            'totalCount' => $guests->count()
+        ]);
+        $guests = $guests->offset($pagination->offset)
+            ->limit($pagination->limit)->all();
+
+
+
+        return $this->render('book',[
+            'guests'     => $guests,
+            'model'      => $model,
+            'pagination' => $pagination,
 
         ]);
     }

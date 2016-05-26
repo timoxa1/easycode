@@ -4,19 +4,18 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Post;
+use yii\data\Pagination;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\models\Category;
 
 /**
  * PostController implements the CRUD actions for Post model.
  */
 class PostController extends Controller
 {
-
-
     /**
      * @inheritdoc
      */
@@ -124,28 +123,45 @@ class PostController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    public function actionAll()
+    {
 
-   public function actionPost()
-   {
-       $posts = Post::find()->orderBy('date_creation DESC')->all();
+        $categories = Category::find()->all();
+        $categoryId = Yii::$app->request->get('category_id', 0);
+        $params = [];
+        if ($categoryId != 0) {
+            $params['category_id'] = $categoryId;
 
-       return $this->render('post',[
-           'posts' => $posts,
-       ]);
-   }
+        }
+        $query = Post::find();
+        $posts = $query
+            ->offset($query->offset)
+            ->limit($query->limit)
+            ->where($params)
+            ->orderBy('date_creation DESC')
+            ->all();
+
+        $pagination = new Pagination([
+            'defaultPageSize' => 2,
+            'totalCount' => count($posts),
+        ]);
+
+        return $this->render('all',[
+            'posts' => $posts,
+            'pagination' => $pagination,
+            'categories' => $categories,
+            'categoryId' => $categoryId,
+        ]);
+    }
+    public function actionPost()
+    {
+        $postId = \Yii::$app->request->get('id');
+
+        $one = Post::find()->where(['id' => $postId])->one();
+        return $this->render('post',[
+            'one' => $one,
 
 
-
-    public function actionOne($id)
-  {
-      $postId = yii::$app->rquest->get('id');
-      $post = Post::find()
-          ->where(['id' => $postId])
-          ->one();
-      $this->render('one',
-          ['post' => $post,
-              'id' => $id
-          ]);
-
-  }
+        ]);
+    }
 }

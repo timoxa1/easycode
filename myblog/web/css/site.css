@@ -89,12 +89,3 @@ a.desc:after {
     padding: 10px 20px;
     margin: 0 0 15px 0;
 }
-.user {
-    width: 308px; /* Ширина поля с учетом padding */
-    height: 46px; /* Высота */
-    background: #dad7c5 url(images/input.png) no-repeat; /* Фон */
-    padding: 0 10px; /* Поля */
-    border: none; /* Убираем рамку */
-    font-size: 1em; /* Размер текста */
-    line-height: 46px; /* Выравниваем по  центру в IE */
-}

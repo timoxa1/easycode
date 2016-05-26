@@ -3,19 +3,20 @@
 namespace app\models;
 
 use Yii;
-use yii\db\ActiveRecord;
+
 /**
  * This is the model class for table "user".
  *
  * @property string $id
+ * @property string $last_name
  * @property string $name
  * @property string $email
- * @property string $url
- * @property string $text
+ * @property string $password
+ * @property string $password_again
+ * @property string $sex
  */
-class User extends ActiveRecord
+class User extends \yii\db\ActiveRecord
 {
-
     /**
      * @inheritdoc
      */
@@ -30,10 +31,9 @@ class User extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'email', 'text'], 'required', 'message' => 'Поля обизательные к заполнению '],
-            ['email', 'email', 'message' => 'Некоректный e-mail адрес !'],
-            [['text'], 'string'],
-            [['name', 'email', 'url'], 'string', 'max' => 255],
+            [['last_name', 'name', 'email', 'password', 'password_again', ], 'required'],
+            [['last_name', 'name', 'email', 'password', 'password_again', ], 'string', 'max' => 255],
+
         ];
     }
 
@@ -44,10 +44,12 @@ class User extends ActiveRecord
     {
         return [
             'id' => 'ID',
+            'last_name' => 'Last Name',
             'name' => 'Name',
             'email' => 'Email',
-            'url' => 'Url',
-            'text' => 'Text',
+            'password' => 'Password',
+            'password_again' => 'Password Again',
+            'sex' => 'Sex',
         ];
     }
 }

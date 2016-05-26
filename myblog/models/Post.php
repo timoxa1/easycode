@@ -3,21 +3,27 @@
 namespace app\models;
 
 use Yii;
-
+use yii\web\UploadedFile;
+use yii\helpers\BaseStringHelper;
 /**
  * This is the model class for table "post".
  *
  * @property string $id
- * @property string $img
  * @property string $title
  * @property string $intro_text
- * @property string $text
+ * @property string $full_text
+ * @property string $category_id
+ * @property string $name_user
  * @property string $date_creation
- * @property integer $users_id
+ * @property string $img
+ *
+ * @property Category $category
  */
 class Post extends \yii\db\ActiveRecord
 {
-
+    public $image;
+    public $filename;
+    public $string;
     /**
      * @inheritdoc
      */
@@ -32,12 +38,13 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'intro_text', 'text'], 'required'],
-            [['intro_text', 'text'], 'string'],
+            [['title', 'intro_text', 'full_text', 'category_id', 'name_user'], 'required'],
+            [['intro_text', 'full_text'], 'string'],
+            [['category_id'], 'integer'],
             [['date_creation'], 'safe'],
-            [['users_id'], 'integer'],
-            ['img', 'file'],
-            [['img', 'title'], 'string', 'max' => 255],
+            [['img'], 'file'],
+            [['title', 'name_user', 'img'], 'string', 'max' => 255],
+            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
     }
 
@@ -48,12 +55,42 @@ class Post extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'img' => 'Img',
             'title' => 'Title',
             'intro_text' => 'Intro Text',
-            'text' => 'Text',
+            'full_text' => 'Full Text',
+            'category_id' => 'Category ID',
+            'name_user' => 'Name User',
             'date_creation' => 'Date Creation',
-            'users_id' => 'Users ID',
+            'img' => 'Img',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategory()
+    {
+        return $this->hasOne(Category::className(), ['id' => 'category_id']);
+    }
+    public function beforeSave($insert){
+        if ($this->isNewRecord) {
+            //generate & upload
+            $this->string = substr(uniqid('img'), 0, 12); //imgRandomString
+            $this->image = UploadedFile::getInstance($this, 'img');
+            $this->filename = 'static/images/' . $this->string . '.' . $this->image->extension;
+            $this->image->saveAs($this->filename);
+
+//            $this->text_preview = BaseStringHelper::truncate($this->text, 250, '...');
+
+            //save
+            $this->img = '/' . $this->filename;
+        }else{
+            $this->image = UploadedFile::getInstance($this, 'img');
+            if($this->image){
+                $this->image->saveAs(substr($this->img, 1));
+            }
+        }
+
+        return parent::beforeSave($insert);
     }
 }

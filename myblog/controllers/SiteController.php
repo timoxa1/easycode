@@ -3,13 +3,11 @@
 namespace app\controllers;
 
 use Yii;
-use yii\helpers\Html;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
-use app\models\MyForm;
 
 class SiteController extends Controller
 {
@@ -93,38 +91,4 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
-    public function actionForm()
-    {
-        $form = new MyForm();
-
-        if ($form->load(Yii::$app->request->post()) && $form->validate()){
-
-            $name = Html::encode($form->name);
-            $email = Html::encode($form->email);
-            $url =Html::encode($form->url);
-            $text = Html::encode($form->text);
-
-        }
-        else {
-            $name       = '';
-            $email      = '';
-            $url        = '';
-            $text       = '';
-
-        }
-
-
-
-        return $this->render('form',
-           [
-               'form'       => $form,
-               'name'       => $name,
-               'email'      => $email,
-               'url'        => $url,
-               'text'       => $text,
-
-           ]
-        );
-    }
-
 }

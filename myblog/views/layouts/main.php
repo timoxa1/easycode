@@ -37,11 +37,11 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Гостевая книга', 'url' => ['/user/user']],
-            ['label' => 'Посты', 'url' => ['/post/post']],
-            ['label' => 'Регистрация', 'url' => ['/users/reg']],
+            ['label' => 'Guest book', 'url' => ['/guest/book']],
+            ['label' => 'Post', 'url' => ['/post/all']],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => 'Sign up', 'url' => ['/user/registration']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
