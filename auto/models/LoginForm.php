@@ -13,6 +13,9 @@ use yii\base\Model;
  */
 class LoginForm extends Model
 {
+    public $name;
+    public $last_name;
+    public $email;
     public $username;
     public $password;
     public $rememberMe = true;
